@@ -1,23 +1,37 @@
-import logo from './logo.svg';
+import {useState, useEffect} from 'react';
 import './App.css';
+import GameScreen from './components/GameScreen';
+import NewGameScreen from './components/NewGameScreen';
 
 function App() {
+
+  const [data, setData] = useState([])
+  const [newGame, setNewGame] = useState(true)
+
+  useEffect(() => {
+    async function fetchQuizApi() {
+      let response = await fetch("https://opentdb.com/api.php?amount=5&type=multiple")
+      response = await response.json()
+      setData(response)
+    }
+    fetchQuizApi()
+  }, [])
+
+  const startNewGame = () => {
+    setNewGame(prevState => !prevState)
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {
+        newGame ? 
+        <NewGameScreen
+          newGame={startNewGame}
+        /> : 
+        <GameScreen
+          data={[data.results]}
+        />
+      }
     </div>
   );
 }

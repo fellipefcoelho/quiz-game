@@ -1,0 +1,26 @@
+.question {
+  margin: 10px;
+  font-weight: 700;
+}
+
+.answer-options {
+  margin-top: 10px;
+}
+
+.answer-btn {
+  margin-right: 15px;
+  margin-bottom: 15px;
+  background-color: transparent;
+  border-style: solid;
+  border-color: #4D5B9E;
+  border-radius: 15px;
+  color: #293264;
+  height: 21px;
+  font-family: 'Inter', sans-serif;
+  font-size: 10px;
+  text-align: center;
+  padding-left: 30px;
+  padding-right: 30px;
+  font-weight: 700;
+}
+
